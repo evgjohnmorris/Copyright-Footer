@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: Georgia, sans-serif;
+      text-align: center;
+      padding: 28px;
+      overflow: hidden;
+    }
+    #scrolling-text {
+      display: inline-block;
+      padding-left: 100%;
+      white-space: nowrap;
+      animation: scroll-left 28s linear infinite;
+      font-size: 1em;
+    }
+    @keyframes scroll-left {
+      0% {
+        transform: translateX(0%);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <span id="scrolling-text">Loading copyright info...</span>
+  </div>
+
+  <script>
+    function updateCopyright() {
+      const now = new Date();
+      const options = {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: '2-digit',
+        second: '2-digit'
+      };
+      const formattedTime = now.toLocaleString('en-US', options);
+      const output = `All Rights Reserved | Copyright © ${formattedTime} Johnathon Morris`;
+      document.getElementById("scrolling-text").innerText = output;
+    }
+
+    updateCopyright();
+    setInterval(updateCopyright, 1000);
+  </script>
+</body>
+</html>
